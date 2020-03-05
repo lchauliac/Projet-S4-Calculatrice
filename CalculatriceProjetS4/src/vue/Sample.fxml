@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="454.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlleur.SampleController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="435.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="36.0" prefWidth="435.0" text="Calculatrice 2000">
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="ecran" prefHeight="55.0" prefWidth="435.0">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin></TextArea>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="435.0" text="zone de calcul :">
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin></Label>
+            <HBox prefHeight="66.0" prefWidth="435.0">
+               <children>
+                  <TextField fx:id="zoneCalcul" prefHeight="26.0" prefWidth="300.0">
+                     <HBox.margin>
+                        <Insets left="80.0" top="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="216.0" prefWidth="435.0">
+               <children>
+                  <GridPane prefHeight="216.0" prefWidth="230.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="toucheAddition" mnemonicParsing="false" onAction="#enterAddition" prefHeight="115.0" prefWidth="68.0" text="+" />
+                        <Button fx:id="toucheSoustraction" mnemonicParsing="false" onAction="#enterSoustraction" prefHeight="106.0" prefWidth="68.0" text="-" GridPane.columnIndex="1" />
+                        <Button fx:id="toucheMultiplication" mnemonicParsing="false" onAction="#enterMultiplication" prefHeight="91.0" prefWidth="66.0" text="*" GridPane.columnIndex="2" />
+                        <Button fx:id="toucheDiviser" mnemonicParsing="false" onAction="#enterDiviser" prefHeight="115.0" prefWidth="77.0" text="/" GridPane.columnIndex="3" />
+                        <Button fx:id="toucheParentheseO" mnemonicParsing="false" onAction="#enterParentheseO" prefHeight="120.0" prefWidth="71.0" text="(" GridPane.rowIndex="1" />
+                        <Button fx:id="touchePoint" mnemonicParsing="false" onAction="#enterPoint" prefHeight="97.0" prefWidth="70.0" text="." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="toucheExit" mnemonicParsing="false" onAction="#enterExit" prefHeight="144.0" prefWidth="92.0" text="exit" GridPane.rowIndex="2" />
+                        <Button fx:id="toucheJeux" mnemonicParsing="false" onAction="#enterjeux" prefHeight="143.0" prefWidth="73.0" text="jeux" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="touchePourcentage" mnemonicParsing="false" onAction="#enterPourcentage" prefHeight="106.0" prefWidth="72.0" text="\%" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="toucheParentheseF" mnemonicParsing="false" onAction="#enterParentheseF" prefHeight="102.0" prefWidth="82.0" text=")" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button fx:id="toucheManuel" mnemonicParsing="false" onAction="#enterManuel" prefHeight="170.0" prefWidth="74.0" text="?" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="toucheNext" mnemonicParsing="false" onAction="#enterNext" prefHeight="186.0" prefWidth="77.0" text="next" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </GridPane>
+                  <GridPane prefHeight="209.0" prefWidth="225.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="touche9" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter9" text="9" GridPane.columnIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter8" text="8" GridPane.columnIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche7" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter7" text="7">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche6" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter6" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter5" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter4" text="4" GridPane.rowIndex="1">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter3" text="3" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter2" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche1" layoutX="86.0" layoutY="154.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enter1" text="1" GridPane.rowIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button fx:id="touche0" mnemonicParsing="false" onAction="#enter0" prefHeight="90.0" prefWidth="97.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="toucheSupp" mnemonicParsing="false" onAction="#enterSupp" prefHeight="90.0" prefWidth="97.0" text="&lt;= X" GridPane.rowIndex="3" />
+                        <Button fx:id="toucheEgal" mnemonicParsing="false" onAction="#enterEgal" prefHeight="90.0" prefWidth="97.0" text="=" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</fx:root>
