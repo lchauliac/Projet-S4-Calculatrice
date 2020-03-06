@@ -10,9 +10,9 @@ public class Essai {
 		String s = new String("aaa+bbb");
 		String strTab[] = s.split('+');
 		java.lang.String s1,s2;
-		String sa = new String("aa+(bb+cc)");
+		String sa = new String("1+1");
 		ArbreCalcul ac = new ArbreCalcul(sa);
 		System.out.println(sa);
-		System.out.println(ac.gestionParenthese(sa)[1]);
+		System.out.println(ac.calcul());
 	}
 }

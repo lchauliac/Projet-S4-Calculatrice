@@ -34,9 +34,10 @@ public class ArbreApplication extends Application {
 		System.out.println("\nParcour Largeur");
 		a.parcoursLargeur();
 		
-		String sa = new String("a+(bb+cc)");
+		String sa = new String("1+1");
 		ArbreCalcul arbr = new ArbreCalcul(sa);
 		dessin = new Dessin<String>(arbr);
+		System.out.println(arbr.calcul());
 		/*Arbre<java.lang.String> unArbre = new Arbre<java.lang.String>(new Arbre(),s1,new Arbre());
 		dessin = new Dessin<java.lang.String>(unArbre);*/
 		
