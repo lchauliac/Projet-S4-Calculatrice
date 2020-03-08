@@ -135,7 +135,6 @@ public class Arbre<E> {
 			this.getFilsG().parcoursPostfixe();
 			this.getFilsD().parcoursPostfixe();
 			System.out.print(this.contenu+",");
-			
 		}
 	}
 

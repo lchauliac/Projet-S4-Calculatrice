@@ -1,6 +1,7 @@
 package modele.arbreCalcul;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class String {
 	//attribut
@@ -9,6 +10,10 @@ public class String {
 	//construtor
 	public String(java.lang.String s) {
 		this.s=s;
+	}
+	
+	public String() {
+		this("");
 	}
 	
 	//methods
@@ -65,9 +70,9 @@ public class String {
 		return sSplited;
 	}
 	
-	public int estOpération(ArrayList<Character> ops) {//liste des opréandes
+	public int estOperation(LinkedList<Character> ops) {//liste des oprÃ¯Â¿Â½andes
 		for(int i=0;i<ops.size();i++) {
-			if(this.s.contains(ops.get(i)+"")) {
+			if(this.s.contains(ops.get(i).charValue()+"")) {
 				return i;
 			}
 		}
@@ -97,6 +102,6 @@ public class String {
 	}
 	
 	public java.lang.String toString(){
-		return "String: "+this.s;
+		return this.s;
 	}
 }
