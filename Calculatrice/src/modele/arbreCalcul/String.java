@@ -70,7 +70,7 @@ public class String {
 		return sSplited;
 	}
 	
-	public int estOperation(LinkedList<Character> ops) {//liste des opr�andes
+	public int estOperation(LinkedList<Character> ops) {//liste des oprï¿½andes
 		for(int i=0;i<ops.size();i++) {
 			if(this.s.contains(ops.get(i).charValue()+"")) {
 				return i;
