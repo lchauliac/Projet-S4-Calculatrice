@@ -135,10 +135,6 @@ public class Arbre<E> {
 			this.getFilsG().parcoursPostfixe();
 			this.getFilsD().parcoursPostfixe();
 			System.out.print(this.contenu+",");
-<<<<<<< HEAD
-			
-=======
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
 		}
 	}
 

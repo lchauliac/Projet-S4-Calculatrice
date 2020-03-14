@@ -1,11 +1,16 @@
 package modele.arbreCalcul.operation;
 
-import modele.arbreCalcul.String;
-
 abstract public class Operateur {
-	private String s;
-	public Operateur(String s) {
-		this.s=s;
+	
+	private Character operande;
+	
+	public Operateur(Character operande) {
+		this.operande=operande;
 	}
+	
 	public abstract double resOperation(double a, double b);
+	
+	public Character getOperande() {
+		return this.operande;
+	}
 }

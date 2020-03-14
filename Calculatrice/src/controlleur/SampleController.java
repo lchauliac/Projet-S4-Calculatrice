@@ -11,12 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import modele.Calculatrice;
 import modele.arbreCalcul.ArbreCalcul;
 import modele.arbreCalcul.String;
 
 public class SampleController implements Initializable { 
 
-	private ArbreCalcul ac;
+	private Calculatrice calculette;
 
 	//--FXML-----------------------------------------------------
 	@FXML
@@ -97,90 +98,92 @@ public class SampleController implements Initializable {
 	@FXML
 	private Button toucheEgal;
 
-	private StringProperty calculActuel;
-
 
 	//--KeyBoard-----------------------------------------------------
 	@FXML
 	void enter0(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"0");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"0");
 	}
 
 	@FXML
 	void enter1(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"1");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"1");
 	}
 
 	@FXML
 	void enter2(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"2");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"2");
 	}
 
 	@FXML
 	void enter3(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"3");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"3");
 	}
 
 	@FXML
 	void enter4(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"4");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"4");
 	}
 
 	@FXML
 	void enter5(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"5");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"5");
 	}
 
 	@FXML
 	void enter6(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"6");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"6");
 	}
 
 	@FXML
 	void enter7(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"7");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"7");
 	}
 
 	@FXML
 	void enter8(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"8");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"8");
 
 	}
 
 	@FXML
 	void enter9(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"9");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"9");
 	}
 
 
 	//--Calcul---------------------------------
 	@FXML
 	void enterAddition(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"+");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"+");
 	}
 
 	@FXML
 	void enterSoustraction(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"-");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"-");
 
 	}
 
 	@FXML
 	void enterMultiplication(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"*");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"*");
 	}
 
 	@FXML
 	void enterDiviser(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"/");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"/");
 	}
 
 	//--Fonctionalité-----------------------------------------------------
 	@FXML
 	void enterEgal(ActionEvent event) {
-		this.ac = new ArbreCalcul(new String(this.calculActuel.get()));
-		this.ecran.appendText(this.calculActuel.get()+" = "+this.ac.calcul()+"\n");
-		this.calculActuel.set("");
+		if(this.calculette.verificationCalcul()) {
+			this.ecran.appendText(this.calculette.getExpr().get()+" = "+this.calculette.calcul()+"\n");
+			this.calculette.getExpr().set("");
+		}
+		else {
+			this.ecran.appendText("Erreur : Le calcul saisie n'est pas correct.\n");
+		}
 	}
 
 	@FXML
@@ -200,31 +203,31 @@ public class SampleController implements Initializable {
 
 	@FXML
 	void enterParentheseF(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+")");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+")");
 
 	}
 
 	@FXML
 	void enterParentheseO(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"(");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"(");
 	}
 
 	@FXML
 	void enterPoint(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+".");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+".");
 
 	}
 
 	@FXML
 	void enterPourcentage(ActionEvent event) {
-		this.calculActuel.set(this.calculActuel.get()+"%");
+		this.calculette.getExpr().set(this.calculette.getExpr().get()+"%");
 
 	}
 
 	@FXML
 	void enterSupp(ActionEvent event) {
-		if (this.calculActuel.get().length() != 0) {
-			this.calculActuel.set(this.calculActuel.get().substring(0, this.calculActuel.get().length()-1));
+		if (this.calculette.getExpr().get().length() != 0) {
+			this.calculette.getExpr().set(this.calculette.getExpr().get().substring(0, this.calculette.getExpr().get().length()-1));
 		}
 
 	}
@@ -238,9 +241,8 @@ public class SampleController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.calculActuel = new SimpleStringProperty();
-		this.calculActuel.set("");
-		zoneCalcul.textProperty().bind(this.calculActuel);
+		this.calculette = new Calculatrice();
+		zoneCalcul.textProperty().bind(this.calculette.getExpr());
 	}
 
 

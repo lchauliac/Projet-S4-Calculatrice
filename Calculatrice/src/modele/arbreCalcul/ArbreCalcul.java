@@ -1,67 +1,34 @@
 package modele.arbreCalcul;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Arrays;
-=======
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.function.BiFunction;
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
 
 import modele.arbre.Arbre;
+import modele.arbreCalcul.operation.Addition;
+import modele.arbreCalcul.operation.Division;
+import modele.arbreCalcul.operation.Multiplication;
+import modele.arbreCalcul.operation.Operateur;
+import modele.arbreCalcul.operation.Soustraction;
 
 public class ArbreCalcul extends Arbre<String>{
-<<<<<<< HEAD
-	
-	public boolean estOpreation;
-	public ArrayList<Character> ops;
-		
-	public ArbreCalcul(ArrayList<Character> ops,String s) {
-		this.contenu = s;
-		int res =s.estOpération(this.ops);
-		if(res>-1) {
-			this.contenu = new String(this.ops.get(res)+"");
-			String[] tab = s.splitOnce( this.ops.get(res) );
-			this.filsG = new ArbreCalcul(ops,tab[0]);
-			this.filsD = new ArbreCalcul(ops,tab[1]);
-		}
-		else {
-			this.contenu = s;
-			this.filsG = new Arbre();
-			this.filsD = new Arbre();
-		}
-	}
-	
-=======
 
-	public LinkedList<Character> ops;
-	public Map<java.lang.String,BiFunction> sToPred;
+	private ArrayList<Operateur> ops;
 
-	public ArbreCalcul(String s) {
-		initOperationList();
-		initSToPred();
-		int res =s.estOperation(this.ops);
+	public ArbreCalcul(String s,ArrayList<Operateur> ops) {
+		this.ops = ops;
 		if(s.getS().contains("(")) {
-			String[] tab = gestionParenthese(s);
-			if(tab.length<=0) {
-				this.contenu = tab[0];
-			}
-			else {
-				this.filsG = new ArbreCalcul(tab[0]);
-				this.contenu = tab[1];
-				if(tab.length>1) {
-					this.filsD = new ArbreCalcul(tab[2]);
-				}
-			}
+			gestionParenthese(s);
 		}
 		else {
+			int res =s.estOperation(this.ops);
 			if(res>=0) {
-				this.contenu = new String(this.ops.get(res)+"");
-				String[] tab = s.splitOnce( this.ops.get(res) );
-				this.filsG = new ArbreCalcul(tab[0]);
-				this.filsD = new ArbreCalcul(tab[1]);	
+				this.contenu = new String(this.ops.get(res).getOperande()+"");
+				String[] tab = s.splitOnce( this.ops.get(res).getOperande() );
+				this.filsG = new ArbreCalcul(tab[0],this.ops);
+				this.filsD = new ArbreCalcul(tab[1],this.ops);	
 			}
 			else {
 				this.contenu = s;
@@ -70,129 +37,98 @@ public class ArbreCalcul extends Arbre<String>{
 			}
 		}
 	}
-
-	private void initOperationList() {
-		this.ops = new LinkedList();
-		this.ops.add('+');
-		this.ops.add('-');
-		this.ops.add('*');
-		this.ops.add('/');
-	}
-
-	private void initSToPred() {
-		this.sToPred = new HashMap<java.lang.String,BiFunction>();
-		BiFunction<Double,Double,Double> add = (Double a,Double b) -> a+b;
-		BiFunction<Double,Double,Double> sous = (Double a,Double b) -> a-b;
-		BiFunction<Double,Double,Double> mult = (Double a,Double b) -> a*b;
-		BiFunction<Double,Double,Double> div = (Double a,Double b) -> a/b;
-		this.sToPred.put("+", add);
-		this.sToPred.put("-", sous);
-		this.sToPred.put("*", mult);
-		this.sToPred.put("/", div);
-	}
-
-	/*private String[] gestionParenthese(String s) {
-		ArrayList<String>ls=new ArrayList<String>();
+	
+	public void gestionParenthese(String s) {
+		LinkedList<String> ls = new LinkedList<String>();
 		int i=0;
-		int nbParenthese=0;
-		String tampon=new String();
-		//this.contenu.getS().charAt(i)!='(' && i<this.contenu.getS().length()
-		while(s.getS().charAt(i)!='(' && i<s.getS().length()) {
-			tampon.setS(tampon.getS()+s.getS().charAt(i));
-			i++;
-		}
-		if(tampon.getS()!="") {
-			ls.add(tampon);
-			tampon = new String();
-		}
-		while(i<s.getS().length() && (s.getS().charAt(i)!=')' && nbParenthese!=0)) {
-			if(s.getS().charAt(i)!='(') {
-				nbParenthese++;
-			}
-			else if(s.getS().charAt(i)!=')') {
-				nbParenthese--;
-			}
-			tampon.setS(tampon.getS()+s.getS().charAt(i));
-			System.out.println(tampon);
-			i++;
-		}
-		if(tampon.getS()!="") {
-			ls.add(tampon);
-			tampon = new String();
-		}
-		while(i<s.getS().length()) {
-			ls.add(tampon);
-			i++;
-		}
-		if(tampon.getS()!="") {
-			ls.add(tampon);
-			tampon = new String();
-		}
-
-		String[] tab = new String[ls.size()];
-		for(i=0;i<ls.size();i++) {
-			tab[i]=ls.get(i);
-		}
-		return tab;
-
-	}*/
-	private String[] gestionParenthese(String s) {
-		ArrayList<String> ls = new ArrayList<String>();
-		String tampon = new String();
-		int i;
-		String[] tab = new String[2];
-		if(s.getS().charAt(0)=='('){
-			i=1;
-			do{
-				tampon.setS(tampon.getS()+s.getS().charAt(i));
-				i++;
-			}while(s.getS().charAt(i)!=')');
-			if(i+1==s.getS().length()) {//Tous n'est qu'une parenthese exemple: (a+b)
-				return new String[1];
-			}
-			//operation apres parenthese exemple: (a+b)+c
-			i++;
-			tab[0] = tampon;
-			tampon = new String();
-			while(i<s.getS().length()) {
-				tampon.setS(tampon.getS()+s.getS().charAt(i));
-				i++;
-			}
-			tab[1] = tampon;
-			return tab;
-		}
-		else { //operation avant parenthese exemple a+(b+c)
+		int deb,fin,nbParenthese;
+		String sub = new String(s.getS());
+		while(sub.getS().contains("(")) {
+			nbParenthese=0;
 			i=0;
-			do{
-				tampon.setS(tampon.getS()+s.getS().charAt(i));
-				i++;
-			}while(s.getS().charAt(i)!='(');
-			tab[0] = tampon;
-			tampon = new String();
-			while(i<s.getS().length()) {
-				tampon.setS(tampon.getS()+s.getS().charAt(i));
+			while(sub.getS().charAt(i)!='(') {
 				i++;
 			}
-			tab[1] = tampon;
-			return tab;
+			deb = i;
+			nbParenthese++;
+			while(sub.getS().charAt(i)!=')' && nbParenthese!=0) {
+				if(sub.getS().charAt(i)=='(') {
+					nbParenthese++;
+				}
+				if(sub.getS().charAt(i)==')') {
+					nbParenthese--;
+				}
+				i++;
+			}
+			i++;
+			fin = i;
+			ls.addFirst(new String(sub.getS().substring(deb,fin)));
+			sub.replace(deb,fin,"a");
 		}
+		//coupez (estOperation) sur le sub
+		int res = sub.estOperation(this.ops);
+		if(res<0) {
+			sub = ls.pollLast();
+			sub.setS(sub.getS().substring(1, sub.getS().length()-1));
+			System.out.println("last "+sub);
+			res = sub.estOperation(this.ops);
+			if(res>=0) {
+				this.contenu = new String(this.ops.get(res).getOperande()+"");
+				String[] tab = sub.splitOnce( this.ops.get(res).getOperande() );
+				this.filsG = new ArbreCalcul(tab[0],this.ops);
+				this.filsD = new ArbreCalcul(tab[1],this.ops);	
+			}
+			else {
+				this.contenu = sub;
+				this.filsD = new Arbre();
+				this.filsG = new Arbre();
+			}
+		}
+		else {
+			String[] tab = sub.splitOnce(this.ops.get(res).getOperande());
+			for(i=0;i<tab.length;i++) {
+				while(tab[i].getS().contains("a")) {
+					tab[i].replaceOnce('a', ls.pollLast().getS());
+				}
+			}
+			this.contenu = new String( this.ops.get(res).getOperande()+"" );
+			this.filsG = new ArbreCalcul(tab[0],this.ops);
+			this.filsD = new ArbreCalcul(tab[1],this.ops);
+		}
+		System.out.println(sub+"moi verife"+this.toString());
+		/*String[] tab = sub.splitOnce(this.ops.get(res).getOperande());
+		//tous remetre
+		int iLs;
+		for(i=0;i<tab.length;i++) {
+			if(tab[i].getS().contains('a'+"")) {
+				tab[i].replaceOnce('a', ls.pollLast().getS());
+			}
+		}
+		this.filsG = new ArbreCalcul(tab[0],this.ops);
+		this.filsD = new ArbreCalcul(tab[1],this.ops);
+		//1+(2+(5+8))
+		//1+a filsG= 1 contenu= + filsD= a donc 2+(5+8)
+		for(i=0;i<tab.length;i++) {
+			System.out.println("techno fin tab:"+tab[i].getS());
+		}*/
 	}
 
 	//--Method-------------------------------------------------------------
 
 	public double calcul() {
 		if( estFeuille() ) {
+			System.out.println(this.contenu.getS());
 			return Double.parseDouble(this.contenu.getS());
 		}
 		if( !this.estVide() ){
-			return (double)this.sToPred.get(getContenu().getS()).apply(((ArbreCalcul) this.filsG).calcul(), ((ArbreCalcul) this.filsD).calcul());
+			System.out.println(getContenu().estOperation(this.ops)+"");
+			return (double)this.ops.get(getContenu().estOperation(this.ops)).resOperation(((ArbreCalcul) this.filsG).calcul(), ((ArbreCalcul) this.filsD).calcul());
 		}
 		return 0;
 	}
 
 	//getter/setter
-	public LinkedList<Character> getOps(){
+	public ArrayList<Operateur> getOps(){
 		return this.ops;
 	}
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
 }

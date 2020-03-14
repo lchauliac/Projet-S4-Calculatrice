@@ -1,10 +1,9 @@
 package modele.arbreCalcul;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.LinkedList;
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
+
+import modele.arbreCalcul.operation.Operateur;
 
 public class String {
 	//attribut
@@ -15,13 +14,10 @@ public class String {
 		this.s=s;
 	}
 	
-<<<<<<< HEAD
-=======
 	public String() {
 		this("");
 	}
 	
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
 	//methods
 	public String[] split(Character spliter) {
 		String[] sSplited;
@@ -75,21 +71,51 @@ public class String {
 
 		return sSplited;
 	}
-	
-<<<<<<< HEAD
-	public int estOpération(ArrayList<Character> ops) {//liste des opréandes
+
+	public int estOperation(ArrayList<Operateur> ops) {//liste des oprï¿½andes
 		for(int i=0;i<ops.size();i++) {
-			if(this.s.contains(ops.get(i)+"")) {
-=======
-	public int estOperation(LinkedList<Character> ops) {//liste des oprï¿½andes
-		for(int i=0;i<ops.size();i++) {
-			if(this.s.contains(ops.get(i).charValue()+"")) {
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
+			if(this.s.contains(ops.get(i).getOperande().charValue()+"")) {
 				return i;
 			}
 		}
 		return -1;
 	}
+	
+	public java.lang.String replace(int deb, int fin,java.lang.String c) {
+		java.lang.String s = "";
+		int i=0;
+		while(i<deb) {
+			s=s+this.s.charAt(i);
+			i++;
+		}
+		s=s+c;
+		i=fin;
+		while(i<this.s.length()) {
+			s=s+this.s.charAt(i);
+			i++;
+		}
+		this.s=s;
+		return this.s;
+	}
+	//Marche
+    public boolean replaceOnce(Character c,java.lang.String remplacement) {
+        if(this.s.contains(c+"")) {
+            int i=0;
+            java.lang.String sub = "";
+            while(this.s.charAt(i) != c) {
+                sub += this.s.charAt(i)+"";
+                i++;
+            }
+            i++;
+            sub += remplacement;
+            sub += this.s.substring(i);
+            this.s = sub;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 	
 	/*public boolean equals(String otherS){
 		try {
@@ -114,10 +140,6 @@ public class String {
 	}
 	
 	public java.lang.String toString(){
-<<<<<<< HEAD
-		return "String: "+this.s;
-=======
 		return this.s;
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
 	}
 }

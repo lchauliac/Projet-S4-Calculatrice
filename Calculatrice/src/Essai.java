@@ -1,45 +1,29 @@
-<<<<<<< HEAD
-import java.util.Scanner;
-
-=======
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import modele.Calculatrice;
 import modele.arbreCalcul.ArbreCalcul;
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
 import modele.arbreCalcul.String;
+import modele.arbreCalcul.operation.Addition;
+import modele.arbreCalcul.operation.Division;
+import modele.arbreCalcul.operation.Multiplication;
+import modele.arbreCalcul.operation.Operateur;
+import modele.arbreCalcul.operation.Soustraction;
 
 public class Essai {
 	public static void main(java.lang.String args[]) {
-<<<<<<< HEAD
-		String s = new String("aaa+bbb");
-		String strTab[] = s.split('+');
-		java.lang.String s1,s2;
-		Scanner sc = new Scanner(System.in);
-		s1=sc.nextLine();
-		//s2=sc.nextLine();
-		String[] tab = new String(s1).splitOnce(sc.nextLine().charAt(0));
-		for(int i=0;i<tab.length;i++) {
-			System.out.println(tab[i].getS());
+		ArrayList<Operateur> ops = new ArrayList<Operateur>();
+		ops.add(new Addition());
+		ops.add(new Soustraction());
+		ops.add(new Multiplication());
+		ops.add(new Division());
+		
+		ArrayList<Character> lc = new ArrayList<Character>();
+		for(int i=0;i<ops.size();i++) {
+			lc.add( ops.get(i).getOperande() );
 		}
-		/*System.out.println(new String(s1).equals(new String(s2)));
-		for(int i=0;i<s1.length();i++) {
-			if(s1.charAt(i)==s2.charAt(i)) {
-				System.out.println("oui");
-			}
-		}
-		for(int i=0;i<strTab.length;i++) {
-			System.out.println(strTab[i].getS());
-		}*/
-=======
-		System.out.println("Essai");
-		String s = new String("aaa+bbb");
-		String strTab[] = s.split('+');
-		java.lang.String s1,s2;
-		String sa = new String("1+1");
-		ArbreCalcul ac = new ArbreCalcul(sa);
-		System.out.println(sa);
-		System.out.println(ac.calcul());
->>>>>>> 2b23567cd8e7ad6962e0c44ea5bb054caaaaba8c
+		String sa = new String("2+(1+1)*(5+1)");
+		ArbreCalcul calculette = new ArbreCalcul(sa,ops);
+		
 	}
 }
