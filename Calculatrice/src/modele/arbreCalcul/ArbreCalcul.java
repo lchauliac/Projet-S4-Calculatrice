@@ -96,21 +96,6 @@ public class ArbreCalcul extends Arbre<String>{
 			this.filsD = new ArbreCalcul(tab[1],this.ops);
 		}
 		System.out.println(sub+"moi verife"+this.toString());
-		/*String[] tab = sub.splitOnce(this.ops.get(res).getOperande());
-		//tous remetre
-		int iLs;
-		for(i=0;i<tab.length;i++) {
-			if(tab[i].getS().contains('a'+"")) {
-				tab[i].replaceOnce('a', ls.pollLast().getS());
-			}
-		}
-		this.filsG = new ArbreCalcul(tab[0],this.ops);
-		this.filsD = new ArbreCalcul(tab[1],this.ops);
-		//1+(2+(5+8))
-		//1+a filsG= 1 contenu= + filsD= a donc 2+(5+8)
-		for(i=0;i<tab.length;i++) {
-			System.out.println("techno fin tab:"+tab[i].getS());
-		}*/
 	}
 
 	//--Method-------------------------------------------------------------

@@ -38,11 +38,6 @@ public class Calculatrice {
 		}
 	}
 	
-	public double calcul() {
-		ArbreCalcul ac = new ArbreCalcul(new String(this.expr.get()),this.ops);
-		return ac.calcul();
-	}
-	
 	private void initNumber() {
 		this.number = new LinkedList<Character>();
 		for(int i=0;i<10;i++) {
@@ -50,8 +45,32 @@ public class Calculatrice {
 		}
 	}
 	
+	public double calcul() {
+		ArbreCalcul ac = new ArbreCalcul(new String(this.expr.get()),this.ops);
+		return ac.calcul();
+	}
+	
+	public double calcul(String s) {
+		ArbreCalcul ac = new ArbreCalcul(s,this.ops);
+		return ac.calcul();
+	}
+	
 	public boolean verificationCalcul() {
 		return verifCalcul(this.expr.get(), 0, 0);
+	}
+	
+	public String createRandomCalcul() {
+		double d1,d2;
+		int rand = (int)(Math.random()*lc.size());
+		if(rand<2) {
+			d1 = Math.round((double)(Math.random()*101) * 100.0) / 100.0;
+			d2 = Math.round((double)(Math.random()*101) * 100.0) / 100.0;
+		}
+		else {
+			d1 = (double)((int)(Math.random()*11));
+			d2 = (double)((int)(Math.random()*11));
+		}
+		return new String(d1+""+lc.get(rand)+d2);
 	}
 	
 	private boolean verifCalcul(java.lang.String calcul, int etat, int nbParentheses) {
@@ -156,6 +175,7 @@ public class Calculatrice {
         }
         
     }
+	
 	//getter/setter
 	public StringProperty getExpr() {//pour bind
 		return this.expr;

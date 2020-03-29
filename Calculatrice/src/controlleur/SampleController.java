@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import modele.Calculatrice;
 import modele.arbreCalcul.ArbreCalcul;
 import modele.arbreCalcul.String;
@@ -18,10 +20,11 @@ import modele.arbreCalcul.String;
 public class SampleController implements Initializable { 
 
 	private Calculatrice calculette;
+	private String randCalcul;
 
 	//--FXML-----------------------------------------------------
 	@FXML
-	private TextArea ecran;
+	private TextField ecran;
 
 	@FXML
 	private TextField zoneCalcul;
@@ -174,15 +177,32 @@ public class SampleController implements Initializable {
 		this.calculette.getExpr().set(this.calculette.getExpr().get()+"/");
 	}
 
-	//--Fonctionalité-----------------------------------------------------
+	//--Fonctionalite-----------------------------------------------------
 	@FXML
 	void enterEgal(ActionEvent event) {
-		if(this.calculette.verificationCalcul()) {
-			this.ecran.appendText(this.calculette.getExpr().get()+" = "+this.calculette.calcul()+"\n");
-			this.calculette.getExpr().set("");
+		if(this.randCalcul.getS() == "") {
+			if(this.calculette.verificationCalcul()) {
+				this.ecran.appendText(this.zoneCalcul.textProperty().get()+" = "+this.calculette.calcul()+"\n");
+				this.calculette.getExpr().set("");
+			}
+			else {
+				this.ecran.appendText("Erreur : Le calcul saisie n'est pas correct.\n");
+			}
 		}
 		else {
-			this.ecran.appendText("Erreur : Le calcul saisie n'est pas correct.\n");
+			double res = this.calculette.calcul(this.randCalcul);
+			res = res*100;
+			res = Math.round(res);
+			res = res/100;
+			System.out.println(res);
+			double saisie = Double.parseDouble(this.zoneCalcul.textProperty().get());
+			if(saisie == res ) {
+				this.ecran.appendText(res+"  Vrai\n");
+				this.calculette.getExpr().set("");
+			}
+			else {
+				this.ecran.appendText("\nFaux resultat etait :"+res+"\n");
+			}
 		}
 	}
 
@@ -234,7 +254,8 @@ public class SampleController implements Initializable {
 
 	@FXML
 	void enterjeux(ActionEvent event) {
-
+		this.randCalcul = this.calculette.createRandomCalcul();
+		this.ecran.appendText("\nCalculer: "+this.randCalcul+"=");
 	}
 
 	//--Initialisation-----------------------------------------------------
@@ -243,6 +264,7 @@ public class SampleController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		this.calculette = new Calculatrice();
 		zoneCalcul.textProperty().bind(this.calculette.getExpr());
+		this.randCalcul = new String("");
 	}
 
 

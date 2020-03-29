@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modele.Calculatrice;
+import modele.dateProperty;
 import modele.arbreCalcul.ArbreCalcul;
 import modele.arbreCalcul.String;
 import modele.arbreCalcul.operation.Addition;
@@ -12,7 +13,7 @@ import modele.arbreCalcul.operation.Soustraction;
 
 public class Essai {
 	public static void main(java.lang.String args[]) {
-		ArrayList<Operateur> ops = new ArrayList<Operateur>();
+		/*ArrayList<Operateur> ops = new ArrayList<Operateur>();
 		ops.add(new Addition());
 		ops.add(new Soustraction());
 		ops.add(new Multiplication());
@@ -24,6 +25,12 @@ public class Essai {
 		}
 		String sa = new String("2+(1+1)*(5+1)");
 		ArbreCalcul calculette = new ArbreCalcul(sa,ops);
-		
+		Calculatrice c = new Calculatrice();
+		System.out.println(c.createRandomCalcul().getS());*/
+		dateProperty dp = new dateProperty();
+		for(int i=0; i<100;i++) {
+			
+			System.out.println(dp.getTimer());
+		}
 	}
 }
