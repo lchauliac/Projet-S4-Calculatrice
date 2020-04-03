@@ -70,7 +70,6 @@ public class ArbreCalcul extends Arbre<String>{
 		if(res<0) {
 			sub = ls.pollLast();
 			sub.setS(sub.getS().substring(1, sub.getS().length()-1));
-			System.out.println("last "+sub);
 			res = sub.estOperation(this.ops);
 			if(res>=0) {
 				this.contenu = new String(this.ops.get(res).getOperande()+"");
@@ -95,18 +94,15 @@ public class ArbreCalcul extends Arbre<String>{
 			this.filsG = new ArbreCalcul(tab[0],this.ops);
 			this.filsD = new ArbreCalcul(tab[1],this.ops);
 		}
-		System.out.println(sub+"moi verife"+this.toString());
 	}
 
 	//--Method-------------------------------------------------------------
 
 	public double calcul() {
 		if( estFeuille() ) {
-			System.out.println(this.contenu.getS());
 			return Double.parseDouble(this.contenu.getS());
 		}
 		if( !this.estVide() ){
-			System.out.println(getContenu().estOperation(this.ops)+"");
 			return (double)this.ops.get(getContenu().estOperation(this.ops)).resOperation(((ArbreCalcul) this.filsG).calcul(), ((ArbreCalcul) this.filsD).calcul());
 		}
 		return 0;

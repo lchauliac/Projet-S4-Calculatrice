@@ -13,24 +13,16 @@ import modele.arbreCalcul.operation.Soustraction;
 
 public class Essai {
 	public static void main(java.lang.String args[]) {
-		/*ArrayList<Operateur> ops = new ArrayList<Operateur>();
-		ops.add(new Addition());
-		ops.add(new Soustraction());
-		ops.add(new Multiplication());
-		ops.add(new Division());
+		Calculatrice calculette = new Calculatrice();
+		Scanner sc = new Scanner(System.in);
+		ArbreCalcul ac;
+		String s;
+		while (true) {
+			System.out.println("saisie expr:");
+			s = new String(sc.nextLine());
+			ac = new ArbreCalcul(s, calculette.getOps());
+			System.out.println("Resultat: "+ac.calcul());
+		}
 		
-		ArrayList<Character> lc = new ArrayList<Character>();
-		for(int i=0;i<ops.size();i++) {
-			lc.add( ops.get(i).getOperande() );
-		}
-		String sa = new String("2+(1+1)*(5+1)");
-		ArbreCalcul calculette = new ArbreCalcul(sa,ops);
-		Calculatrice c = new Calculatrice();
-		System.out.println(c.createRandomCalcul().getS());*/
-		dateProperty dp = new dateProperty();
-		for(int i=0; i<100;i++) {
-			
-			System.out.println(dp.getTimer());
-		}
 	}
 }

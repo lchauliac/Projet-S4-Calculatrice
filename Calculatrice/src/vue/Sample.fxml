@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -20,14 +21,11 @@
                   <Insets left="30.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="ecran" prefHeight="25.0" prefWidth="402.0">
-               <padding>
-                  <Insets top="75.0" />
-               </padding>
+            <TextArea fx:id="ecran" prefHeight="75.0" prefWidth="417.0">
                <VBox.margin>
-                  <Insets left="15.0" />
+                  <Insets left="10.0" />
                </VBox.margin>
-            </TextField>
+            </TextArea>
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="435.0" text="zone de calcul :">
                <VBox.margin>
                   <Insets left="30.0" />

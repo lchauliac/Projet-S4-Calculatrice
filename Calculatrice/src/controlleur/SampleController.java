@@ -24,7 +24,7 @@ public class SampleController implements Initializable {
 
 	//--FXML-----------------------------------------------------
 	@FXML
-	private TextField ecran;
+	private TextArea ecran;
 
 	@FXML
 	private TextField zoneCalcul;
@@ -201,7 +201,8 @@ public class SampleController implements Initializable {
 				this.calculette.getExpr().set("");
 			}
 			else {
-				this.ecran.appendText("\nFaux resultat etait :"+res+"\n");
+				this.ecran.appendText(" X\n");
+				this.ecran.appendText("Faux resultat etait :"+res+"\n");
 			}
 		}
 	}
@@ -255,7 +256,7 @@ public class SampleController implements Initializable {
 	@FXML
 	void enterjeux(ActionEvent event) {
 		this.randCalcul = this.calculette.createRandomCalcul();
-		this.ecran.appendText("\nCalculer: "+this.randCalcul+"=");
+		this.ecran.appendText("Calculer: "+this.randCalcul+"=");
 	}
 
 	//--Initialisation-----------------------------------------------------

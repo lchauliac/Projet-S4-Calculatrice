@@ -180,4 +180,7 @@ public class Calculatrice {
 	public StringProperty getExpr() {//pour bind
 		return this.expr;
 	}
+	public  ArrayList<Operateur> getOps() {
+		return this.ops;
+	}
 }
